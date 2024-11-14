@@ -4,7 +4,7 @@ function NewPlantForm({onAddPlant}) {
   const [formData, setFormData] = useState({
     name: "",
     image: "",
-    price: ""
+    price: 0
   });
 
   function handleChange(e) {
@@ -20,13 +20,13 @@ function NewPlantForm({onAddPlant}) {
     const newPlant = {
       name: formData.name,
       image: formData.image,
-      price: parseFloat(formData.price)
+      price:formData.price.toString()
     };
 
     fetch("http://localhost:6001/plants", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"  // Fixed header case to lowercase
+        "Content-Type": "Application/JSON"  // Fixed header case to lowercase
       },
       body: JSON.stringify(newPlant)  // `price` will remain as a number after parseFloat
     })
